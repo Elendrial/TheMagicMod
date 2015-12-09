@@ -5,6 +5,7 @@
 /logs
 /screenshots
 /run/
+\bin\
 
 # Windows image file caches
 Thumbs.db

@@ -11,6 +11,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerRenders(){
+		super.registerRenders();
 		TMMItemRegistry.registerRender();
 		TMMBlockRegistry.registerRender();;
 		RenderingRegistry.registerEntityRenderingHandler(EntityExplodingMagicShot.class, new RenderEntityExplodingMagicShot(Minecraft.getMinecraft().getRenderManager()));

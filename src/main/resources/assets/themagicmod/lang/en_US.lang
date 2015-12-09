@@ -1,7 +1,10 @@
 item.woodenwand.name=Wooden Wand
+item.brokenwand.name=Broken Wand
 
 tile.wandaugmenter.name=Wand Augmenter
 
 entity.MagicShotExploding.name=Exploding Magic Shot
 
 itemGroup.TheMagicTab=The Magic Mod
+
+container.wandaugmentertileentity.name=Wand Augmenter

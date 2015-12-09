@@ -1,3 +1,11 @@
+/eclipse
+/bin/
+/.gradle
+/saves
+/logs
+/screenshots
+/run/
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

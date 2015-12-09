@@ -1,0 +1,16 @@
+[
+{
+  "modid": "themagicmod",
+  "name": "The Magic mod",
+  "description": "Adds a load of magic based stuff. It's shit, I know...",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Hii488"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

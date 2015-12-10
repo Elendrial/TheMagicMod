@@ -20,7 +20,7 @@ public class GuiWandAugmenter extends GuiContainer{
         this.tileWandAugmenter = furnaceInv;
         
         this.xSize = 176;
-		this.ySize = 166;
+		this.ySize = 184;
     }
 
 	@Override
@@ -34,6 +34,5 @@ public class GuiWandAugmenter extends GuiContainer{
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY){
 		String s = this.tileWandAugmenter.getDisplayName().getUnformattedText();
         this.fontRendererObj.drawString(s, 88 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);		//#404040
-        this.fontRendererObj.drawString(this.playerInv.getDisplayName().getUnformattedText(), 8, 72, 4210752);   
 	}
 }

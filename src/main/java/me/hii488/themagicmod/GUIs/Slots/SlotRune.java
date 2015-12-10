@@ -18,7 +18,7 @@ public class SlotRune extends Slot{
     
     public boolean isItemValid(ItemStack stack)
     {
-        return stack.getItem() == new BaseRuneItem();
+        return stack.getItem().getUnlocalizedName().contains("rune");
     }
 	
 }

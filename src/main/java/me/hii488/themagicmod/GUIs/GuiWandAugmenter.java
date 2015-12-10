@@ -20,13 +20,13 @@ public class GuiWandAugmenter extends GuiContainer{
         this.tileWandAugmenter = furnaceInv;
         
         this.xSize = 176;
-		this.ySize = 166;
+		this.ySize = 184;
     }
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.getTextureManager().bindTexture(new ResourceLocation(References.MODID + "textures/gui/container/tileentitywandaugmenter.png"));
+        this.mc.getTextureManager().bindTexture(new ResourceLocation(References.MODID + ":textures/gui/container/tileentitywandaugmenter.png"));
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 	}
 	
@@ -34,6 +34,5 @@ public class GuiWandAugmenter extends GuiContainer{
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY){
 		String s = this.tileWandAugmenter.getDisplayName().getUnformattedText();
         this.fontRendererObj.drawString(s, 88 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);		//#404040
-        this.fontRendererObj.drawString(this.playerInv.getDisplayName().getUnformattedText(), 8, 72, 4210752);   
 	}
 }

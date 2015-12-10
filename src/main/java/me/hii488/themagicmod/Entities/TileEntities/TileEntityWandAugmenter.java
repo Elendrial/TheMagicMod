@@ -13,7 +13,7 @@ import net.minecraft.util.IChatComponent;
 public class TileEntityWandAugmenter extends TileEntity implements IInventory{
 
 	/** The ItemStacks that hold the items currently being used in the Tile Entity 
-	 * Slot 0 = wand, 1->3 = runes */
+	 * Slot 0 = wand, 1->6 = runes */
     private ItemStack[] wandAugmenterInventory = new ItemStack[3];
     private String wandAugmenterCustomName;
 	
@@ -22,7 +22,7 @@ public class TileEntityWandAugmenter extends TileEntity implements IInventory{
     }
 
     public String getName() {
-        return this.hasCustomName() ? this.wandAugmenterCustomName : "container.wandaugmentertileentity";
+        return this.hasCustomName() ? this.wandAugmenterCustomName : "Wand Augmenter";
     }
 
     @Override

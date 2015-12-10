@@ -5,9 +5,9 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class SlotRune extends Slot{
+public class SlotSpellRune extends Slot{
 	
-	public SlotRune(IInventory inventory, int index, int xPosition, int yPosition) {
+	public SlotSpellRune(IInventory inventory, int index, int xPosition, int yPosition) {
         super(inventory, index, xPosition, yPosition);
     }
 
@@ -18,7 +18,7 @@ public class SlotRune extends Slot{
     
     public boolean isItemValid(ItemStack stack)
     {
-        return stack.getItem().getUnlocalizedName().contains("rune");
+        return stack.getItem().getUnlocalizedName().toLowerCase().contains("spellrune");
     }
 	
 }

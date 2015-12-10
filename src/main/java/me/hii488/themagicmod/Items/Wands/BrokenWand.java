@@ -20,4 +20,9 @@ public class BrokenWand extends BaseWandItem{
 		return stack;
 	}
 	
+	@Override
+	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityPlayer playerIn, int timeLeft){
+		
+	}
+	
 }

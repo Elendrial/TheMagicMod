@@ -21,57 +21,12 @@ public class WoodenWand extends BaseWandItem{
 		
 		this.setBaseAffectedAreaSize(5f);
 		this.setBaseMaxTicks(10);
-	}
-	
-	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		
-		MagicAboutToFireEvent event = new MagicAboutToFireEvent(player, stack);
-        if (net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event)) return event.result;
-		
-        if(player.capabilities.isCreativeMode || true){
-        	player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
-        }
-        
-        return stack;
+		this.maxRunes = 1;
 	}
 	
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack){
         return 10;
-    }
-	
-	@Override
-	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityPlayer playerIn, int timeLeft){
-        
-		boolean flag = playerIn.capabilities.isCreativeMode;
-        
-		if (flag || true){
-        	
-			if(stack.getItemDamage() == stack.getMaxDamage()-1){
-				int slot = playerIn.inventory.currentItem;
-				
-				BrokenWand bWand = (BrokenWand) TMMItemRegistry.brokenwand;
-
-				stack.damageItem(1, playerIn);
-				
-				playerIn.inventory.mainInventory[slot] = new ItemStack(bWand, 1, 0);
-				
-			}
-			else{
-				stack.damageItem(1, playerIn);
-			}
-        	
-        	EntityBaseMagicShot shot = new EntityExplodingMagicShot(worldIn, playerIn);
-        	shot.setAffectedAreaSize(this.affectedAreaSize);
-        	shot.setMaxTicksAlive(this.maxTicks);
-        	shot.setAffectsSolids(true);
-        	
-        	if (!worldIn.isRemote)
-            {
-                worldIn.spawnEntityInWorld(shot);
-            }
-        	
-        }
     }
 }

@@ -5,14 +5,13 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class BaseRuneItem extends Item{
-
-	protected int level;
-	protected int xp;
+	
+	protected EnumRuneType runeType;
 	
 	public BaseRuneItem(){
 		super();
 		this.setCreativeTab(TMMTabRegistry.MagicTab);
-		this.setMaxStackSize(16);
+		this.setMaxStackSize(1);
 	}
 	
 	@Override

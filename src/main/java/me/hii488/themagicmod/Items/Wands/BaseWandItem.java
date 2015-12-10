@@ -1,8 +1,12 @@
 package me.hii488.themagicmod.Items.Wands;
 
 import me.hii488.themagicmod.References;
+import me.hii488.themagicmod.Entities.Projectiles.EntityBaseMagicShot;
+import me.hii488.themagicmod.Entities.Projectiles.EntityExplodingMagicShot;
 import me.hii488.themagicmod.Events.MagicAboutToFireEvent;
 import me.hii488.themagicmod.Items.Runes.BaseRuneItem;
+import me.hii488.themagicmod.Items.Runes.BaseSpellRuneItem;
+import me.hii488.themagicmod.Registries.TMMItemRegistry;
 import me.hii488.themagicmod.Registries.TMMTabRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -14,13 +18,16 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class BaseWandItem extends Item{
 	
-	private float baseAffectedAreaSize = 0;
+	private float baseAffectedAreaSize = 1;
 	private int baseMaxTicks = 0;
 	
 	protected float affectedAreaSize;
 	protected int maxTicks;
 	
-	protected BaseRuneItem[] runes;
+	protected BaseSpellRuneItem[] runes;
+	protected int maxRunes;
+	
+	protected int selectedSlot = 0;
 	
 	
 	public BaseWandItem(){
@@ -35,6 +42,54 @@ public class BaseWandItem extends Item{
 		GameRegistry.registerItem(this, par1Str);
 		return super.setUnlocalizedName(par1Str);
 	}
+	
+	@Override
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+		
+		MagicAboutToFireEvent event = new MagicAboutToFireEvent(player, stack);
+        if (net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event)) return event.result;
+		
+        if(player.capabilities.isCreativeMode || true){
+        	player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
+        }
+        
+        return stack;
+	}
+	
+	@Override
+	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityPlayer playerIn, int timeLeft){
+        
+		boolean flag = playerIn.capabilities.isCreativeMode;
+        
+		if (flag || true){
+        	
+			if(stack.getItemDamage() == stack.getMaxDamage()-1){
+				int slot = playerIn.inventory.currentItem;
+				
+				BrokenWand bWand = (BrokenWand) TMMItemRegistry.brokenwand;
+
+				stack.damageItem(1, playerIn);
+				
+				playerIn.inventory.mainInventory[slot] = new ItemStack(bWand, 1, 0);
+				
+			}
+			else{
+				stack.damageItem(1, playerIn);
+			}
+        	
+        	EntityBaseMagicShot shot = new EntityExplodingMagicShot(worldIn, playerIn);
+        	shot.setAffectedAreaSize(this.affectedAreaSize);
+        	shot.setMaxTicksAlive(this.maxTicks);
+        	shot.setAffectsSolids(true);
+        	
+        	if (!worldIn.isRemote)
+            {
+                worldIn.spawnEntityInWorld(shot);
+            }
+        	
+        }
+    }
+	
 	
 	
 	public float getBaseAffectedAreaSize(){
@@ -53,11 +108,11 @@ public class BaseWandItem extends Item{
 		this.baseMaxTicks = i;
 	}
 	
-	public BaseRuneItem[] getRunes(){
+	public BaseSpellRuneItem[] getRunes(){
 		return this.runes;
 	}
 	
-	public void setRunes(BaseRuneItem[] b){
+	public void setRunes(BaseSpellRuneItem[] b){
 		this.runes = b;
 	}
 	

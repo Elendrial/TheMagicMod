@@ -18,7 +18,7 @@ public class SlotWand extends Slot{
     
     public boolean isItemValid(ItemStack stack)
     {
-        return stack.getItem().getUnlocalizedName().contains("wand");
+        return stack.getItem().getUnlocalizedName().toLowerCase().contains("wand") && !stack.getItem().getUnlocalizedName().equals("wandaugmenter");
     }
 
 }

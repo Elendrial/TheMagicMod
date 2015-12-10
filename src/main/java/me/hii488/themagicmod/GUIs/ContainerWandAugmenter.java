@@ -1,7 +1,7 @@
 package me.hii488.themagicmod.GUIs;
 
 import me.hii488.themagicmod.Entities.TileEntities.TileEntityWandAugmenter;
-import me.hii488.themagicmod.GUIs.Slots.SlotRune;
+import me.hii488.themagicmod.GUIs.Slots.SlotSpellRune;
 import me.hii488.themagicmod.GUIs.Slots.SlotWand;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -32,12 +32,12 @@ public class ContainerWandAugmenter extends Container{
         
         this.addSlotToContainer(new SlotWand(tileWandAugmenter, 0, 79, 65-16));
         
-        this.addSlotToContainer(new SlotRune(tileWandAugmenter, 1, 60, 34-16));
-        this.addSlotToContainer(new SlotRune(tileWandAugmenter, 2, 39, 65-16));
-        this.addSlotToContainer(new SlotRune(tileWandAugmenter, 3, 60, 96-16));
-        this.addSlotToContainer(new SlotRune(tileWandAugmenter, 4, 98, 96-16));
-        this.addSlotToContainer(new SlotRune(tileWandAugmenter, 5, 121, 65-16));
-        this.addSlotToContainer(new SlotRune(tileWandAugmenter, 6, 98, 34-16));
+        this.addSlotToContainer(new SlotSpellRune(tileWandAugmenter, 1, 60, 34-16));
+        this.addSlotToContainer(new SlotSpellRune(tileWandAugmenter, 2, 39, 65-16));
+        this.addSlotToContainer(new SlotSpellRune(tileWandAugmenter, 3, 60, 96-16));
+        this.addSlotToContainer(new SlotSpellRune(tileWandAugmenter, 4, 98, 96-16));
+        this.addSlotToContainer(new SlotSpellRune(tileWandAugmenter, 5, 121, 65-16));
+        this.addSlotToContainer(new SlotSpellRune(tileWandAugmenter, 6, 98, 34-16));
         
         // Player Inventory, Slot 9-35, Slot IDs 9-35
         for (int y = 0; y < 3; ++y) {

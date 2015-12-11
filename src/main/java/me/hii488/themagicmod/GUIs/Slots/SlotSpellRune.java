@@ -1,6 +1,6 @@
 package me.hii488.themagicmod.GUIs.Slots;
 
-import me.hii488.themagicmod.Items.Runes.BaseRuneItem;
+import me.hii488.themagicmod.Items.Runes.BaseRunes.BaseRuneItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;

@@ -1,12 +1,10 @@
-package me.hii488.themagicmod.Items.Runes;
+package me.hii488.themagicmod.Items.Runes.BaseRunes;
 
 import me.hii488.themagicmod.Registries.TMMTabRegistry;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class BaseRuneItem extends Item{
-	
-	protected EnumRuneType runeType;
 	
 	public BaseRuneItem(){
 		super();

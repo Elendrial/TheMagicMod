@@ -3,7 +3,7 @@ package me.hii488.themagicmod.Items.Wands;
 import me.hii488.themagicmod.Entities.Projectiles.EntityBaseMagicShot;
 import me.hii488.themagicmod.Entities.Projectiles.EntityExplodingMagicShot;
 import me.hii488.themagicmod.Events.MagicAboutToFireEvent;
-import me.hii488.themagicmod.Items.Runes.BaseRuneItem;
+import me.hii488.themagicmod.Items.Runes.BaseRunes.BaseRuneItem;
 import me.hii488.themagicmod.Registries.TMMItemRegistry;
 import me.hii488.themagicmod.Registries.TMMTabRegistry;
 import net.minecraft.entity.player.EntityPlayer;

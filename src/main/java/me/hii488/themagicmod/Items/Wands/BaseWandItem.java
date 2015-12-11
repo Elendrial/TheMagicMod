@@ -4,8 +4,8 @@ import me.hii488.themagicmod.References;
 import me.hii488.themagicmod.Entities.Projectiles.EntityBaseMagicShot;
 import me.hii488.themagicmod.Entities.Projectiles.EntityExplodingMagicShot;
 import me.hii488.themagicmod.Events.MagicAboutToFireEvent;
-import me.hii488.themagicmod.Items.Runes.BaseRuneItem;
-import me.hii488.themagicmod.Items.Runes.BaseSpellRuneItem;
+import me.hii488.themagicmod.Items.Runes.BaseRunes.BaseRuneItem;
+import me.hii488.themagicmod.Items.Runes.BaseRunes.BaseSpellRuneItem;
 import me.hii488.themagicmod.Registries.TMMItemRegistry;
 import me.hii488.themagicmod.Registries.TMMTabRegistry;
 import net.minecraft.client.Minecraft;
@@ -19,10 +19,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class BaseWandItem extends Item{
 	
 	private float baseAffectedAreaSize = 1;
-	private int baseMaxTicks = 0;
-	
-	protected float affectedAreaSize;
-	protected int maxTicks;
+	private int baseMaxTicks = 1;
 	
 	protected BaseSpellRuneItem[] runes;
 	protected int maxRunes;
@@ -62,7 +59,7 @@ public class BaseWandItem extends Item{
 		boolean flag = playerIn.capabilities.isCreativeMode;
         
 		if (flag || true){
-        	
+       /* 	
 			if(stack.getItemDamage() == stack.getMaxDamage()-1){
 				int slot = playerIn.inventory.currentItem;
 				
@@ -86,7 +83,27 @@ public class BaseWandItem extends Item{
             {
                 worldIn.spawnEntityInWorld(shot);
             }
-        	
+        	*/
+			
+			if(stack.getItemDamage() == stack.getMaxDamage()-1){
+				int slot = playerIn.inventory.currentItem;
+				
+				BrokenWand bWand = (BrokenWand) TMMItemRegistry.brokenwand;
+
+				stack.damageItem(1, playerIn);
+				
+				playerIn.inventory.mainInventory[slot] = new ItemStack(bWand, 1, 0);
+				
+			}
+			else{
+				stack.damageItem(1, playerIn);
+			}
+			
+			EntityBaseMagicShot shot = this.runes[selectedSlot].getRuneType().getMagicShot(worldIn, playerIn);
+			shot.setAffectedAreaSize(this.baseAffectedAreaSize + this.runes[selectedSlot].getAffectedAreaModifier());
+			shot.setMaxTicksAlive(this.baseMaxTicks + this.runes[selectedSlot].getMaxTicksModifier());
+			
+			
         }
     }
 	

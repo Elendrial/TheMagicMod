@@ -1,7 +1,7 @@
 package me.hii488.themagicmod.Registries;
 
 import me.hii488.themagicmod.References;
-import me.hii488.themagicmod.Items.Runes.ExplosiveRune;
+import me.hii488.themagicmod.Items.Runes.SpellRunes.ExplosiveRune;
 import me.hii488.themagicmod.Items.Wands.BrokenWand;
 import me.hii488.themagicmod.Items.Wands.WoodenWand;
 import net.minecraft.client.Minecraft;

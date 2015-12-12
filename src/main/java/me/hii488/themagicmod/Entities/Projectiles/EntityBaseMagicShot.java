@@ -123,12 +123,11 @@ public abstract class EntityBaseMagicShot extends Entity implements IProjectile
         this.ticksInGround = 0;
     }
 
-    protected float getVelocity()
+    public float getVelocity()
     {
         return velocity;
     }
     
-    @SideOnly(Side.CLIENT)
     public void setSpeed(float velocity){
     	this.velocity = velocity;
     }
@@ -307,11 +306,12 @@ public abstract class EntityBaseMagicShot extends Entity implements IProjectile
     /**
      * Gets the amount of gravity to apply to the thrown entity with each tick.
      */
-    protected float getGravityVelocity()
+    public float getGravityVelocity()
     {
         return gravityVelocity;
     }
-    protected void setGravityVelocity(float gv)
+    
+    public void setGravityVelocity(float gv)
     {
         this.gravityVelocity = gv;
     }

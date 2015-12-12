@@ -13,13 +13,19 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class BaseWandItem extends Item{
 	
-	private float baseAffectedAreaSize = 1;
-	private int baseMaxTicks = 1;
+	private float baseAffectedAreaSize;
+	private float basePower;
+	private int baseMaxTicks;
+	private float baseSpeed;
+	private float baseInaccuracy;
+	private float baseGravityVelocity;
 	
 	protected BaseSpellRuneItem[] runes;
 	protected int maxRunes;
@@ -58,7 +64,7 @@ public class BaseWandItem extends Item{
         
 		boolean flag = playerIn.capabilities.isCreativeMode;
         
-		if (flag || true){
+		if ((flag || true) && this.runes != null){
        /* 	
 			if(stack.getItemDamage() == stack.getMaxDamage()-1){
 				int slot = playerIn.inventory.currentItem;
@@ -101,13 +107,56 @@ public class BaseWandItem extends Item{
 			
 			EntityBaseMagicShot shot = this.runes[selectedSlot].getRuneType().getMagicShot(worldIn, playerIn);
 			shot.setAffectedAreaSize(this.baseAffectedAreaSize + this.runes[selectedSlot].getAffectedAreaModifier());
+			shot.setPower(this.basePower + this.runes[selectedSlot].getPowerModifier());
 			shot.setMaxTicksAlive(this.baseMaxTicks + this.runes[selectedSlot].getMaxTicksModifier());
+			shot.setSpeed(baseSpeed + this.runes[selectedSlot].getSpeedModifier());
+			shot.setGravityVelocity(baseGravityVelocity + this.runes[selectedSlot].getGravityVelocityModifier());
+			shot.setAffectsLiquids(this.runes[selectedSlot].getAffectsLiquids());
+			shot.setAffectsSolids(this.runes[selectedSlot].getAffectsSolids());
 			
-			
+			if (!worldIn.isRemote)
+            {
+                worldIn.spawnEntityInWorld(shot);
+            }
         }
     }
 	
+	@Override
+	public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)    {
+		if(this.runes != null){
+        	if(selectedSlot < this.runes.length){
+        		selectedSlot++;
+        	}
+        	else{
+        		selectedSlot = 0;
+        	}
+        }
+		return false;
+    }
 	
+	public float getBasePower() {
+		return basePower;
+	}
+
+	public void setBasePower(float basePower) {
+		this.basePower = basePower;
+	}
+
+	public float getBaseSpeed() {
+		return baseSpeed;
+	}
+
+	public void setBaseSpeed(float baseSpeed) {
+		this.baseSpeed = baseSpeed;
+	}
+
+	public float getBaseInaccuracy() {
+		return baseInaccuracy;
+	}
+
+	public void setBaseInaccuracy(float baseInaccuracy) {
+		this.baseInaccuracy = baseInaccuracy;
+	}
 	
 	public float getBaseAffectedAreaSize(){
 		return baseAffectedAreaSize;
@@ -132,5 +181,15 @@ public class BaseWandItem extends Item{
 	public void setRunes(BaseSpellRuneItem[] b){
 		this.runes = b;
 	}
+
+	public float getBaseGravityVelocity() {
+		return baseGravityVelocity;
+	}
+
+	public void setBaseGravityVelocity(float baseGravityVelocity) {
+		this.baseGravityVelocity = baseGravityVelocity;
+	}
+	
+	
 	
 }

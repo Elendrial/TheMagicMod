@@ -16,7 +16,9 @@ public class BrokenWand extends BaseWandItem{
 	
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
-		player.addChatComponentMessage(new ChatComponentText("This wand has run out of power...").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.AQUA).setItalic(true)));
+		if(!world.isRemote){
+			player.addChatComponentMessage(new ChatComponentText("This wand has run out of power...").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.AQUA).setItalic(true)));
+		}
 		return stack;
 	}
 	
